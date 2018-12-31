@@ -33,8 +33,10 @@ public class GameWindow {
 			{ 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0},
 			{ 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0}
 	};
-	
+	private Sprite player;
 	public GameWindow() throws Exception {
+		EventManager eventmanager = new EventManager(player);
+		
 		GameView view = new GameView(model, objects);
 		Dimension d = new Dimension(GameView.DEFAULT_VIEW_SIZE, GameView.DEFAULT_VIEW_SIZE/2);
 		view.setPreferredSize(d);
@@ -45,7 +47,7 @@ public class GameWindow {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().setLayout(new FlowLayout());
 		f.add(view);
-		//f.addKeyListener(view);
+		f.addKeyListener(eventmanager);
 		f.setSize(1000, 1000);
 		f.setLocation(100, 100);
 		f.pack();
